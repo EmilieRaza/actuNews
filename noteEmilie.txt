@@ -1,0 +1,7 @@
+symfony check:requirements
+
+symfony new nomDuProjet --full
+
+orm : gestionnaire d'objet relationnel chaque table vont etre traité comme un objet 
+repository: traitement des requetes sql 
+Helloquant (laravel) fin janvier
