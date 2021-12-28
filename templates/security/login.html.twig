@@ -4,18 +4,18 @@
 
 {% block content %}
 <div class="container">
-        <form method="post shadow pt-5">
+        <form method="post" class="shadow pt-5">
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
 
             {% if app.user %}
                 <div class="mb-3">
-                    You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                   Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
                 </div>
             {% endif %}
 
-            <h1 class="h3 mb-3 font-weight-normal mt-5">Please sign in</h1>
+            <h1 class="h3 mb-3 font-weight-normal mt-5">Connexion</h1>
             <label for="inputEmail">Email</label>
             <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
             <label for="inputPassword">Password</label>
@@ -37,7 +37,7 @@
             #}
 
             <button class="btn btn-lg btn-dark mt-5" type="submit">
-                Sign in
+              Connexion
             </button>
         </form>
     </div>
