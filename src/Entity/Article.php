@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\ArticleRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ArticleRepository;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -56,6 +57,11 @@ class Article
      * @ORM\Column(type="string", length=150, nullable=true)
      */
     private $photo;
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    #une fonction magique en PHP est une fonction qui sera éxécutée à l'instanciation de la class ( new user() dans le controller)
+    public function __construct(){ //
+        $this->setCreatedAt(new DateTime());
+    }
 
     public function getId(): ?int
     {

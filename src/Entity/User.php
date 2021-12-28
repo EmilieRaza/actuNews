@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -60,6 +61,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $deletedAt;
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    #une fonction magique en PHP est une fonction qui sera éxécutée à l'instanciation de la class ( new user() dans le controller)
+    public function __construct(){ //
+        $this->setRoles(['ROLE_USER']);
+        $this->setCreatedAt(new DateTime());
+    }
     public function getId(): ?int
     {
         return $this->id;

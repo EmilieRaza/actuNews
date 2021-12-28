@@ -36,13 +36,13 @@ class RegisterController extends AbstractController
             $user = $form->getData();
 
             #on paramettre la propriété  de notre objet User
-            $user->setCreatedAt(new DateTime());
+            #$user->setCreatedAt(new DateTime());deja setter dans la calss User dans la fonction magique
             
             #on Set le password grâce au passWordHasher pour envoyer en BDD un mdp hashé
             $user->setPassword($passwordHasher->hashPassword($user, $user->getPassword()));
             
             #On set le role du user à ROLE_USER. dans Symfony les roles ont une place à part pour permettre de différencier les utilisateur par leur role dans l'application
-            $user->setRoles(['ROLE_USER']);
+            #$user->setRoles(['ROLE_USER']); deja setter dans la calss User dans la fonction magique
 
             #Pour insérer en BDD, on va utiliser l'ORM de symfony, Doctrine et son outil entityManager. Ce dernier nous permettra de persister les données en BDD. 
             # $entityManager est un container.

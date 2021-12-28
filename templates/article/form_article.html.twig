@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="row mt-5 mb-3">
+        <div class="col-8 mx-auto h3 text-center text-uppercase">
+           Ajouter un arcticle
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8 mx-auto">
+            {{ form_start(form, {'attr': {novalidate: 'novalidate'}})}}
+            {{ form_end(form)}}
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+

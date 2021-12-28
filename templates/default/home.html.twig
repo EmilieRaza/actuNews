@@ -6,59 +6,28 @@
     <div class="container mt-5">
 
 
-
-        <div class="row">
-            <div class="col-md-6">
-                 <div class="card shadow mt-3 border-0">
-                    <div class="card-header text-uppercase bg-dark text-light">
-                        Article 1
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary btn-dark">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                 <div class="card shadow mt-3 border-0">
-                    <div class="card-header text-uppercase bg-dark text-light">
-                        Article 1
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary btn-dark">Go somewhere</a>
-                    </div>
-                </div>
+        <div class="row mt-5 mb-3">
+            <div class="col-12 text-center my-5 h3 text-center text-uppercase">
+                Tous les articles
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
+        <div class="row mt-2">
+         {% for article in articles  %}
+            <div class="col-md-4">
                  <div class="card shadow mt-3 border-0">
                     <div class="card-header text-uppercase bg-dark text-light">
-                        Article 1
+                        {{article.title| length > 100 ? article.title | slice(0,100) ~ '...' :article.title }}
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <h5 class="card-title">{{article.subtitle| length > 100 ? article.subtitle | slice(0,100) ~ '...' :article.subtitle }}</h5>
+                        <p class="card-text">{{article.content| length > 250 ? article.content | slice(0,250) ~ '...' :article.content }}</p>
                         <a href="#" class="btn btn-primary btn-dark">Go somewhere</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                 <div class="card shadow mt-3 border-0">
-                    <div class="card-header text-uppercase bg-dark text-light">
-                        Article 1
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary btn-dark">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
+        {% endfor %}
+        
         </div>
 
     </div>
