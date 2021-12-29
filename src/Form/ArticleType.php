@@ -4,12 +4,15 @@ namespace App\Form;
 
 use App\Entity\Article;
 
+use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ArticleType extends AbstractType
@@ -28,15 +31,35 @@ class ArticleType extends AbstractType
                     'placeholder' => 'ici le contenu de votre article'
                 ]
             ])
-            ->add('photo',FileType::class,[
-                'label' => 'Photo'
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'name',
+                'placeholder' => "Choisir une categorie",
+                'multiple' => false,  
+                'expanded' => false
+                
             ])
-            ->add('submit',SubmitType::class, [
-                'label' => 'Créer votre article',
+            ->add('photo',FileType::class,[
+                'data_class' => null,
+                'label' => 'Photo',
+                'constraints' => [
+                    new Image([
+                        'mimeTypes' => ['image/jpeg', 'image/png'],
+                        'mimeTypesMessage' => 'Les types de fichiers autorisés sont: .jpeg et .png',
+
+                    ])
+                 ],
+
                 'attr'=> [
-                    'class'=>'d-block col-3 my-3 mx-auto btn btn-dark w-100'
+                    'data-default-file'=>$options['photo']
                 ]
             ])
+            // ->add('submit',SubmitType::class, [
+            //     'label' => 'Créer votre article',
+            //     'attr'=> [
+            //         'class'=>'d-block col-3 my-3 mx-auto btn btn-dark w-100'
+            //     ]
+            // ])
         ;
     }
 
@@ -45,6 +68,7 @@ class ArticleType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Article::class,
             'allow_file_upload' => true,
+            'photo' => null
         ]);
     }
 }

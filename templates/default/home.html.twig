@@ -11,7 +11,21 @@
                 Tous les articles
             </div>
         </div>
-
+        {# Messagge AddFlash() #}
+        <div  class="col-sm-12 col-lg-12 col-xl-12 mt-4">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                    {% if label == 'success' %}
+                        <span class="alert-inner--icon"><i class="fe fe-thumbs-up"></i></span>
+                    {% else %}
+                        <span class="alert-inner--icon"><i class="fe fe-thumbs-down"></i></span>
+                    {% endif %}
+                    <span class="alert-inner--text"><strong>{{ label | title }} : </strong> {{ message | raw }}</span>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
         <div class="row mt-2">
          {% for article in articles  %}
             <div class="col-md-4">
@@ -20,9 +34,11 @@
                         {{article.title| length > 100 ? article.title | slice(0,100) ~ '...' :article.title }}
                     </div>
                     <div class="card-body">
+                        <img class="img-fluid rounded img-card-custom img-custom" src="{{asset('uploads/'~ article.photo)}}"/>
                         <h5 class="card-title">{{article.subtitle| length > 100 ? article.subtitle | slice(0,100) ~ '...' :article.subtitle }}</h5>
                         <p class="card-text">{{article.content| length > 250 ? article.content | slice(0,250) ~ '...' :article.content }}</p>
-                        <a href="#" class="btn btn-primary btn-dark">Go somewhere</a>
+                        <a href="#" class="btn btn-primary btn-dark">{{ article.category.name }}</a>
+                        <a href="{{path('show_article',{'id' : article.id} )}}" class="btn btn-primary btn-dark">Lire l'article</a>
                     </div>
                 </div>
             </div>

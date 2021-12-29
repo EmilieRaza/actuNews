@@ -1,0 +1,13 @@
+.img-card-custom {
+    width: 18rem;
+    height: 200px;
+    object-fit: cover;
+}
+
+.img-custom {
+    height: 600px;
+    object-fit: cover;
+}
+.bg_secondary{
+    background-color: #CD5C5C!important;
+}

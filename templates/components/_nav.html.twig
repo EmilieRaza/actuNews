@@ -12,7 +12,16 @@
         <li class="nav-item active">
           <a class="nav-link text-dark text-uppercase" href="{{path('default_home')}}">Accueil</a>
         </li>
-
+         {# <li class="nav-item dropdown bg_secondary">
+              <a class="nav-link dropdown-toggle text-dark text-uppercase" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                catégories
+              </a>
+              <ul class="dropdown-menu bg_secondary" aria-labelledby="navbarDropdown" style="background-color:#CD5C5C!important">
+                {% for category in categories %}
+                  <li><a class="dropdown-item" href="#">
+					      {% endfor %}
+              </ul>
+            </li> #}
         {# {{dump(app.user)}} #}
         {% if not app.user %} {# si app.user est null #}
           <li class="nav-item">
@@ -29,13 +38,14 @@
                 Administration
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Dashbord</a></li>
+                <li><a class="dropdown-item" href="{{path('admin_dashboard')}}">Dashbord</a></li>
                 <li><a class="dropdown-item" href="{{path('create_article')}}">Créer un article</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
             </li>
           {% endif %} 
+          {{ render(url('render_categories'))}}
           {# <li class="nav-item">
             <a class="nav-link text-dark text-uppercase" href="{{path('contact')}}">Contact</a>
           </li> #}
